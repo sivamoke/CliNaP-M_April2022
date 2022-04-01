@@ -307,47 +307,48 @@ For those of you who do not want to upload your data to server, galaxy can be ru
 - Start
 - After upload completed click build, name the list as mzXML
 
-![](Figures/lcms13.png)
+![](Figures/l.png)
 
-![](Figures/lcms14.png)
+![](Figures/l.png)
 
-![](Figures/lcms15.png)
+![](Figures/l.png)
 
-![](Figures/lcms16.png)
+![](Figures/l.png)
 
-![](Figures/lcms17.png)
-
-![](Figures/lcms18.png)
+![](Figures/l.png)
 
 ### Step 2. Read data using XCMS: MSnbase readMSData
+
+This first step is only meant to read your mzXML file and generate an object usable by XCMS 
+
 - Type in the tool search box readMSData
 - Select XCMS: MSnbase readMSData
 - Select mzXML collection
 - Execute
 
-![](Figures/lcms19.png)
+![](Figures/l.png)
 
-![](Figures/lcms20.png)
+![](Figures/l.png)
 
 ### Step 3. Create and upload meta data as tab delimited file
 - Create metadata in MS excel
 - Save as tab-delimited (.txt) file
 - Upload to galaxy (file type tabular)
 
-![](Figures/lcms21.png)
+![](Figures/l.png)
 
-![](Figures/lcms22.png)
+![](Figures/l.png)
 
-### Step 4. Create and upload meta data as tab delimited file
-#### This tool generates Base Peak Intensity Chromatograms (BPIs) and Total Ion Chromatograms (TICs). If you provide groups as we do here, you obtain two plots: one with colours based on provided groups, one with one colour per sample.
+### Step 4. Create meta data and Getting an overview of your samples’ chromatograms
+This tool generates Base Peak Intensity Chromatograms (BPIs) and Total Ion Chromatograms (TICs). If you provide groups as we do here, you obtain two plots: one with colours based on provided groups, one with one colour per sample.
 
 - Type in the tool search box “xcms plot chromatogram”
 - Select mzXML.raw.RData as input > execute
 - When the process complete click the eye button to visualize the data
 
-![](Figures/lcms23.png)
+![](Figures/l.png)
 
-![](Figures/lcms24.png)
+![](Figures/l.png)
 
 ### Step 5. Peak picking
 Now that your data is ready for XCMS processing, the first step is to extract peaks from each of your data files independently. The idea here is, for each peak, to proceed to chromatographic peak detection.
@@ -361,13 +362,25 @@ The XCMS solution provides two different algorithms to perform chromatographic p
 
 ### Step 6. Merging peak data into one data 
 
+Gathering the different samples in one Rdata file
+A dedicated tool exists to merge the different RData files into a single one: xcms findChromPeaks Merger tool. Although you can simply take as input your dataset collection alone, the tool also provides de possibility to take into account a sampleMetadata file. Indeed, depending of your analytical sequence, you may want to treat part of your samples a different way when proceeding to the grouping step using xcms groupChromPeaks (group)
+
 - Type in the tool search box “merge”
 - Select xcms findChromPeaks Merger
 - Select mzXML.raw.xset.RData as input > execute
 
 ![](Figures/FigureXXX.png)
 
-### Step 7. Group chromatogram peak
+### Step 7. determining shared ions across samples
+
+The first peak picking step gave us lists of ions for each sample. However, what we want now is a single matrix of ions intensities for all samples. To obtain such a table, we need to determine, among the individual ion lists, which ions are the same. This is the aim of the present step, called ‘grouping’.
+
+The group function aligns ions extracted with close retention time and close m/z values in the different samples. In order to define this similarity, we have to define on one hand a m/z window and on the other hand a retention time window. A binning is then performed in the mass domain. The size of the bins is called width of overlapping m/z slices. You have to set it according to your mass spectrometer resolution.
+
+Then, a kernel density estimator algorithm is used to detect region of retention time with high density of ions. This algorithm uses a Gaussian model to group together peaks with similar retention time.
+
+The inclusion of ions in a group is defined by the standard deviation of the Gaussian model, called bandwidth. This parameter has a large weight on the resulting matrix. It must be chosen according to the quality of the chromatography. To be valid, the number of ions in a group must be greater than a given number of samples. Either a percentage of the total number of samples or an absolute value of samples can be given. This is defined by the user.
+
 
 - Type in the tool search box “group”
 - Select xcms groupChromPeak
@@ -375,7 +388,18 @@ The XCMS solution provides two different algorithms to perform chromatographic p
 
 ![](Figures/FigureXXX.png)
 
-### Step 8. Retention time correction
+### Step 8. retention time correction
+
+Sometimes with LC-MS techniques, a deviation in retention time occurs from a sample to another. In particular, this is likely to be observed when you inject large sequences of samples.
+
+This optional step aims to correct retention time drift for each peak among samples. The correction is based on what is called well behaved peaks, that are peaks found in all samples or at least in most of the samples.
+
+Sometimes it is difficult to find enough peaks present in all samples. The user can define a percentage of the total number of samples in which a peak should be found to be considered a well behaved peak. This parameter is called minimum required fraction of samples.
+
+On the contrary, you may have peak groups with more detected peaks than the total number of samples. Those peaks are called additional peaks. If you do not want to consider peak groups with too much additional peaks as ‘well behaved peaks’, you can use the ‘maximal number of additional peaks’ parameter to put them aside.
+
+The algorithm uses statistical smoothing methods. You can choose between linear or loess regression.
+
 
 - Type in the tool search box “retcor”
 - Select xcms adjustRtime
@@ -384,7 +408,14 @@ The XCMS solution provides two different algorithms to perform chromatographic p
 
 ![](Figures/FigureXXX.png)
 
-### Step 9. Fill peaks
+### Step 9. integrating areas of missing peaks
+
+With this ‘fillChromPeaks’ step, you obtain your final intensity table. At this step, you have everything mandatory to begin analysing your data:
+
+A sampleMetadata file (if not done yet, to be completed with information about your samples)
+A dataMatrix file (with the intensities)
+A variableMetadata file (with information about ions such as retention times, m/z)
+
 
 - Type in the tool search box “fillPeaks”
 - Select xcms fillChromPeaks (fillPeaks)
