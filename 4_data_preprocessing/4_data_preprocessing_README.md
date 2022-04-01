@@ -340,7 +340,7 @@ This first step is only meant to read your mzXML file and generate an object usa
 
 ![](Figures/l6.png)
 
-### Step 4. Create meta data and Getting an overview of your samples’ chromatograms
+### Step 4. Getting an overview of your samples’ chromatograms
 This tool generates Base Peak Intensity Chromatograms (BPIs) and Total Ion Chromatograms (TICs). If you provide groups as we do here, you obtain two plots: one with colours based on provided groups, one with one colour per sample.
 
 - Type in the tool search box “xcms plot chromatogram”
