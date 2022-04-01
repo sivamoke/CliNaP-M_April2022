@@ -304,12 +304,13 @@ https://workflow4metabolomics.usegalaxy.fr/
 For those of you who do not want to upload your data to server, galaxy can be run locally in your PC using docker
 
 ## LC-MS data pre-processing 
-### Step 1. Upload data 
-- Collection
-- Select local file
+### Step 1. Upload data
+click on the upload icon on the top left of the screen next to the word "Tools"
+- Select collection tab
+- Select choose local file
 - Select workshop dataset 
-- File type mzXML
-- Start
+- Set file type to mzXML
+- Press start
 - After upload completed click build, name the list as mzXML
 
 ![](Figures/l1.png)
