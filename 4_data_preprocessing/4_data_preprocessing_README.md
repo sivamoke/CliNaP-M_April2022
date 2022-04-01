@@ -288,10 +288,15 @@ https://training.galaxyproject.org/training-material/topics/metabolomics/tutoria
 The metabolome analysis workflow is available at the following servers and docker image
 
 https://usegalaxy.eu/
+
 https://africa.usegalaxy.eu/
+
 https://india.usegalaxy.eu/
+
 https://streetscience.usegalaxy.eu/
+
 https://usegalaxy.org.au/
+
 https://workflow4metabolomics.usegalaxy.fr/
 
 ![](Figures/lcms4.png)
