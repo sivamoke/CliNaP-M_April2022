@@ -351,9 +351,11 @@ This tool generates Base Peak Intensity Chromatograms (BPIs) and Total Ion Chrom
 - Select mzXML.raw.RData as input > execute
 - When the process complete click the eye button to visualize the data
 
-![](Figures/l.png)
 
-![](Figures/l.png)
+
+![](Figures/l8.png)
+
+![](Figures/l9.png)
 
 ### Step 5. Peak picking
 Now that your data is ready for XCMS processing, the first step is to extract peaks from each of your data files independently. The idea here is, for each peak, to proceed to chromatographic peak detection.
@@ -363,7 +365,7 @@ The XCMS solution provides two different algorithms to perform chromatographic p
 - Select xcms findChromPeaks
 - Select mzXML.raw.RData as input > execute
 
-![](Figures/FigureXXX.png)
+![](Figures/l10.png)
 
 ### Step 6. Merging peak data into one data 
 
@@ -374,7 +376,7 @@ A dedicated tool exists to merge the different RData files into a single one: xc
 - Select xcms findChromPeaks Merger
 - Select mzXML.raw.xset.RData as input > execute
 
-![](Figures/FigureXXX.png)
+![](Figures/l11.png)
 
 ### Step 7. determining shared ions across samples
 
@@ -391,7 +393,9 @@ The inclusion of ions in a group is defined by the standard deviation of the Gau
 - Select xcms groupChromPeak
 - Select xset.merged.RData as input > execute
 
-![](Figures/FigureXXX.png)
+![](Figures/l12.png)
+
+![](Figures/l13.png)
 
 ### Step 8. retention time correction
 
@@ -411,7 +415,7 @@ The algorithm uses statistical smoothing methods. You can choose between linear 
 - Select xset.merged.group.Chrom.RData as input > execute
 - Repeat step 7 with xset.merged.group.Chrom.adjustRtime.RData as input > execute
 
-![](Figures/FigureXXX.png)
+![](Figures/l14.png)
 
 ### Step 9. integrating areas of missing peaks
 
@@ -425,9 +429,11 @@ A variableMetadata file (with information about ions such as retention times, m/
 - Type in the tool search box “fillPeaks”
 - Select xcms fillChromPeaks (fillPeaks)
 - Select xset.merged.group.Chrom.adjustRtime.groupChromPeaks.RData as input > execute
- as input > execute
+ as input > execute after the process was done the data matrix can be download ny clicking at the data and click at the disket sign
  
- ![](Figures/FigureXXX.png)
+ ![](Figures/l15.png)
+ 
+ ![](Figures/l16.png)
 
  
 
