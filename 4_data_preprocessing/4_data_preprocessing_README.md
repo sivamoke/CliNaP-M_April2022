@@ -281,10 +281,6 @@ It is composed of R functions able to extract, filter, align, fill gap and annot
 
 **Figure2: LCMS preprocessing workflow.**
 
-https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/lcms-preprocessing/slides-plain.html
-
-![](Figures/lcms3.png)
-
 The metabolome analysis workflow is available at the following servers and docker image
 
 https://usegalaxy.eu/
