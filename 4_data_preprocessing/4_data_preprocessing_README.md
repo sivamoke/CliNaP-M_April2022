@@ -318,7 +318,6 @@ For those of you who do not want to upload your data to server, galaxy can be ru
 
 ![](Figures/l3.png)
 
-![](Figures/l4.png)
 
 
 ### Step 2. Read data using XCMS: MSnbase readMSData
@@ -330,9 +329,7 @@ This first step is only meant to read your mzXML file and generate an object usa
 - Select mzXML collection
 - Execute
 
-![](Figures/l.png)
-
-![](Figures/l.png)
+![](Figures/l4.png)
 
 ### Step 3. Create and upload meta data as tab delimited file
 - Create metadata in MS excel
