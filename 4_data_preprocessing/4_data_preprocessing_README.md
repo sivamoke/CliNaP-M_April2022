@@ -312,15 +312,14 @@ For those of you who do not want to upload your data to server, galaxy can be ru
 - Start
 - After upload completed click build, name the list as mzXML
 
-![](Figures/l.png)
+![](Figures/l1.png)
 
-![](Figures/l.png)
+![](Figures/l2.png)
 
-![](Figures/l.png)
+![](Figures/l3.png)
 
-![](Figures/l.png)
+![](Figures/l4.png)
 
-![](Figures/l.png)
 
 ### Step 2. Read data using XCMS: MSnbase readMSData
 
@@ -340,9 +339,12 @@ This first step is only meant to read your mzXML file and generate an object usa
 - Save as tab-delimited (.txt) file
 - Upload to galaxy (file type tabular)
 
-![](Figures/l.png)
 
-![](Figures/l.png)
+![](Figures/meta.png)
+
+![](Figures/l5.png)
+
+![](Figures/l6.png)
 
 ### Step 4. Create meta data and Getting an overview of your samples’ chromatograms
 This tool generates Base Peak Intensity Chromatograms (BPIs) and Total Ion Chromatograms (TICs). If you provide groups as we do here, you obtain two plots: one with colours based on provided groups, one with one colour per sample.
@@ -351,7 +353,7 @@ This tool generates Base Peak Intensity Chromatograms (BPIs) and Total Ion Chrom
 - Select mzXML.raw.RData as input > execute
 - When the process complete click the eye button to visualize the data
 
-
+![](Figures/l7.png)
 
 ![](Figures/l8.png)
 
